@@ -1,16 +1,26 @@
-import React, { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Volume2, Mic, MicOff, HelpCircle } from 'lucide-react';
 import { GameCanvas } from './game-canvas';
 import { GameOver } from './game-over';
 import { Instructions } from './instructions';
 import { useAudio } from '../hooks/useAudio';
 import type { GameState } from '../types/game-types';
+import ReactGA from 'react-ga';
 
-function App() {
+function Game() {
+
+    const TRACKING_ID = import.meta.env.TRACKING_ID;
+
+    ReactGA.initialize(TRACKING_ID);
+
+    useEffect(() => {
+        ReactGA.pageview(window.location.pathname + window.location.search);
+    }, []);
+
   const [isListening, setIsListening] = useState(false);
   const [showInstructions, setShowInstructions] = useState(true);
   const [isGameOver, setIsGameOver] = useState(false);
-  
+
   const gameStateRef = useRef<GameState>({
     ball: { x: 100, y: 300, radius: 20 },
     obstacles: [
@@ -102,4 +112,4 @@ function App() {
   );
 }
 
-export default App;
+export default Game;
