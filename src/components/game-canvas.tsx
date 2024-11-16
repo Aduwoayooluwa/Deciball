@@ -39,7 +39,7 @@ export function GameCanvas({ isListening, isGameOver, gameStateRef, setIsGameOve
       const ctx = canvas.getContext('2d');
       if (!ctx) return;
   
-      const scale = dimensions.width / 1000; // Scale factor based on original width
+      const scale = dimensions.width / 1000; 
   
       let animationId: number;
       const gameLoop = () => {
