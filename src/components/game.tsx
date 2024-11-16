@@ -9,8 +9,8 @@ import ReactGA from 'react-ga';
 
 function Game() {
 
-    const TRACKING_ID = import.meta.env.TRACKING_ID;
-
+    const TRACKING_ID = import.meta.env.PUBLIC_TRACKING_ID;
+    
     ReactGA.initialize(TRACKING_ID);
 
     useEffect(() => {

@@ -1,7 +1,7 @@
 /// <reference path="../.astro/types.d.ts" />
 
 interface ImportMetaEnv {
-    readonly TRACKING_ID: string;
+    readonly PUBLIC_TRACKING_ID: string;
     
   }
   
