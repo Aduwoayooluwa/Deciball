@@ -8,9 +8,10 @@ interface GameCanvasProps {
   gameStateRef: React.RefObject<GameState>;
   setIsGameOver: (value: boolean) => void;
   stopAudio: () => void;
+  startAudio: boolean;
 }
 
-export function GameCanvas({ isListening, isGameOver, gameStateRef, setIsGameOver, stopAudio }: GameCanvasProps) {
+export function GameCanvas({ isListening, isGameOver, gameStateRef, setIsGameOver, stopAudio, startAudio }: GameCanvasProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const [dimensions, setDimensions] = useState({ width: 1000, height: 500 });
   
@@ -98,7 +99,7 @@ export function GameCanvas({ isListening, isGameOver, gameStateRef, setIsGameOve
           if (obstacle.x + obstacle.width < 0) {
             obstacle.x = canvas.width / scale;
             obstacle.height = 150 + Math.random() * 150;
-            if (gameStateRef.current) {
+            if (gameStateRef.current && startAudio) {
               gameStateRef.current.score++;
             }
           }

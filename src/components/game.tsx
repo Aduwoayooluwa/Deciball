@@ -34,7 +34,7 @@ function Game() {
     microphone: null,
   });
 
-  const { startAudio, stopAudio } = useAudio(
+  const { startAudio, stopAudio, audioStarted } = useAudio(
     gameStateRef,
     setIsListening,
     setShowInstructions,
@@ -93,6 +93,7 @@ function Game() {
               isGameOver={isGameOver}
               gameStateRef={gameStateRef}
               setIsGameOver={setIsGameOver}
+              startAudio={audioStarted}
               stopAudio={stopAudio}
             />
             {isGameOver && (

@@ -1,4 +1,4 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import type { GameState } from '../types/game-types';
 
 export function useAudio(
@@ -8,6 +8,8 @@ export function useAudio(
     setIsGameOver: (value: boolean) => void
   ) {
     const streamRef = useRef<MediaStream | null>(null);
+
+    const [audioStarted, setAudioStarted] = useState(false);
   
     const startAudio = useCallback(async () => {
       if (!gameStateRef.current) return;
@@ -27,6 +29,7 @@ export function useAudio(
         
         setIsListening(true);
         setShowInstructions(false);
+        setAudioStarted(true)
         setIsGameOver(false);
       } catch (error) {
         console.error('Error accessing microphone:', error);
@@ -49,5 +52,5 @@ export function useAudio(
       }
     }, [gameStateRef, setIsListening]);
   
-    return { startAudio, stopAudio };
+    return { startAudio, stopAudio, audioStarted };
   }
